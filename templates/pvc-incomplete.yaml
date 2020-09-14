@@ -1,0 +1,21 @@
+{{- if .Values.persistence.downloads.enabled -}}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ template "qbittorrent.fullname" . }}-incomplete
+  labels:
+    app: {{ template "qbittorrent.fullname" . }}
+    chart: {{ template "qbittorrent.chart" . }}
+    release: {{ .Release.Name | quote }}
+    heritage: {{ .Release.Service | quote }}
+spec:
+  accessModes:
+    - {{ .Values.persistence.incomplete.accessMode | quote }}
+  resources:
+    requests:
+      storage: {{ .Values.persistence.incomplete.size | quote }}
+  {{- if .Values.persistence.incomplete.storageClass }}
+  storageClass: {{ .Values.persistence.incomplete.storageClass | quote }}
+  {{- end }}
+{{- end -}}
+
