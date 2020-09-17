@@ -27,6 +27,7 @@ data:
     remote-cert-tls server
     auth-user-pass credentials.conf
     compress
+    mute-replay-warnings
     verb 1
     reneg-sec 0
     <crl-verify>
