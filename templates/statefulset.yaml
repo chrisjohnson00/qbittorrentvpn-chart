@@ -16,6 +16,8 @@ spec:
       release: {{ .Release.Name | quote }}
   template:
     metadata:
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/configmap-pia.yaml") . | sha256sum }}
       labels:
         app: {{ template "qbittorrent.fullname" . }}
         chart: {{ template "qbittorrent.chart" . }}
@@ -56,6 +58,10 @@ spec:
         - name: {{ $key }}
           value: {{ $value | quote }}
         {{- end }}
+        - name: PUID
+          value: {{ .Values.puid | quote }}
+        - name: PGID
+          value: {{ .Values.pgid | quote }}
         ports:
         - containerPort: {{ .Values.uiPort }}
           name: http

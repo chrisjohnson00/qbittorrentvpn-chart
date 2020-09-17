@@ -114,6 +114,9 @@ ingress:
 # ref: https://github.com/trankchung/qbittorrent/tree/master/docker#environment-variables
 extraEnvVars: {}
 
+puid: 1000
+pgid: 1000
+
 # Pod Upgrade Strategy
 # ref: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#strategy
 #
