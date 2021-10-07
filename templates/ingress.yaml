@@ -22,8 +22,10 @@ spec:
       paths:
       - path: {{ default "/" .path }}
         backend:
-          serviceName: {{ template "qbittorrent.fullname" $ }}
-          servicePort: http
+          service:
+            name: {{ template "qbittorrent.fullname" $ }}
+            port:
+              number: 80
   {{- end }}
   tls:
   {{- range .Values.ingress.hosts }}
