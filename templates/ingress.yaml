@@ -21,6 +21,7 @@ spec:
     http:
       paths:
       - path: {{ default "/" .path }}
+        pathType: Prefix
         backend:
           service:
             name: {{ template "qbittorrent.fullname" $ }}
